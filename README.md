@@ -4,7 +4,7 @@ A modern, interactive web-based chess game with a unique twist: **when you captu
 
 ## 🎮 Live Demo
 
-Play the game online: [Your GitHub Pages URL here]
+Play the game online: https://sravyakodati.github.io/two-move-chess-web/
 
 ## 🎯 Special Rules
 
@@ -117,5 +117,3 @@ Potential improvements:
 - Tournament mode
 
 ---
-
-**Built with ❤️ for the AI Solutions Engineer coding challenge** 
