@@ -1,0 +1,250 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    min-height: 100vh;
+    color: #333;
+}
+
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+header {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+h1 {
+    font-size: 3rem;
+    font-weight: 700;
+    color: white;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+    margin-bottom: 10px;
+}
+
+.subtitle {
+    font-size: 1.2rem;
+    color: rgba(255,255,255,0.9);
+    font-weight: 400;
+}
+
+.game-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: white;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+    margin-bottom: 30px;
+}
+
+.player-info, .moves-info {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.player-label, .moves-label {
+    font-size: 0.9rem;
+    color: #666;
+    font-weight: 600;
+}
+
+.player-name, .moves-count {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: #333;
+}
+
+.new-game-btn {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    border: none;
+    padding: 12px 24px;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.new-game-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+}
+
+.chess-board {
+    display: inline-block;
+    border: 3px solid #333;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 12px 40px rgba(0,0,0,0.2);
+    margin: 0 auto 30px;
+    display: block;
+    width: fit-content;
+}
+
+.board-row {
+    display: flex;
+}
+
+.square {
+    width: 70px;
+    height: 70px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2.5rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    position: relative;
+}
+
+.square:hover {
+    transform: scale(1.05);
+    box-shadow: inset 0 0 0 3px rgba(255,255,255,0.3);
+}
+
+.white-square {
+    background-color: #f0d9b5;
+}
+
+.black-square {
+    background-color: #b58863;
+}
+
+.square.selected {
+    background-color: #90EE90 !important;
+    box-shadow: inset 0 0 0 3px #4CAF50;
+}
+
+.square.valid-move {
+    background-color: #FFE4B5 !important;
+    box-shadow: inset 0 0 0 3px #FFA500;
+}
+
+.square.capture {
+    background-color: #FFB6C1 !important;
+    box-shadow: inset 0 0 0 3px #FF0000;
+}
+
+.game-status {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.status-message {
+    background: white;
+    padding: 15px 30px;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 1.1rem;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    display: inline-block;
+}
+
+.status-message.success {
+    background: #d4edda;
+    color: #155724;
+    border: 1px solid #c3e6cb;
+}
+
+.status-message.error {
+    background: #f8d7da;
+    color: #721c24;
+    border: 1px solid #f5c6cb;
+}
+
+.rules {
+    background: white;
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+}
+
+.rules h3 {
+    margin-bottom: 15px;
+    color: #333;
+    font-size: 1.3rem;
+}
+
+.rules ul {
+    list-style: none;
+    padding-left: 0;
+}
+
+.rules li {
+    padding: 8px 0;
+    border-bottom: 1px solid #eee;
+    position: relative;
+    padding-left: 25px;
+}
+
+.rules li:before {
+    content: "♟";
+    position: absolute;
+    left: 0;
+    color: #667eea;
+    font-size: 1.2rem;
+}
+
+.rules li:last-child {
+    border-bottom: none;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+    .container {
+        padding: 15px;
+    }
+    
+    h1 {
+        font-size: 2rem;
+    }
+    
+    .game-info {
+        flex-direction: column;
+        gap: 15px;
+        text-align: center;
+    }
+    
+    .square {
+        width: 50px;
+        height: 50px;
+        font-size: 2rem;
+    }
+    
+    .chess-board {
+        border-width: 2px;
+    }
+}
+
+/* Animation for piece movement */
+@keyframes movePiece {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+    100% { transform: scale(1); }
+}
+
+.piece-moved {
+    animation: movePiece 0.3s ease-in-out;
+}
+
+/* Highlight for captured pieces */
+@keyframes capture {
+    0% { transform: scale(1); opacity: 1; }
+    50% { transform: scale(1.2); opacity: 0.7; }
+    100% { transform: scale(0); opacity: 0; }
+}
+
+.piece-captured {
+    animation: capture 0.5s ease-in-out;
+} 
